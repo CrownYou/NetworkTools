@@ -75,10 +75,9 @@ def recv_udp_message(listen_ip='0.0.0.0', listen_port=9999, buffer_size=1024):
 
 @run_as_thread
 def listen_udp_message():
-    listen_ip = local_ip
     listen_port = port
     while True:
-        message, addr = recv_udp_message(listen_ip=listen_ip, listen_port=listen_port)
+        message, addr = recv_udp_message(listen_ip='0.0.0.0', listen_port=listen_port)
         lf2_text1.config(state='normal')
         lf2_text1.insert('end',
                          f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}, {local_ip}:{listen_port} received from {addr}, protocol: udp, encoding: {code_type.get()}, content:\n{message}\n\n",
@@ -119,10 +118,9 @@ def recv_large_tcp_message(listen_ip='0.0.0.0', listen_port=9999, buffer_size=40
 
 @run_as_thread
 def listen_tcp_message():
-    listen_ip = local_ip
     listen_port = port
     while True:
-        message, addr = recv_large_tcp_message(listen_ip=listen_ip, listen_port=listen_port)
+        message, addr = recv_large_tcp_message(listen_ip='0.0.0.0', listen_port=listen_port)
         lf2_text1.config(state='normal')
         lf2_text1.insert('end',
                          f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}, {local_ip}:{listen_port} received from {addr}, protocol: tcp, encoding: {code_type.get()}, content:\n{message}\n\n",
